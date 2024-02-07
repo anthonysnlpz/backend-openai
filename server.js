@@ -7,7 +7,10 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(cors());
+app.use(cors({
+  methods: ['POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Almacena la clave de la API en una variable
