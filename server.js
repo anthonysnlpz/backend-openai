@@ -7,15 +7,8 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3001;
 
+app.use(cors()); // Configurar el middleware de CORS para permitir solicitudes desde cualquier origen
 app.use(express.json());
-
-// Configurar CORS manualmente para permitir solicitudes desde cualquier origen
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
 
 // Almacena la clave de la API en una variable
 const apiKey = process.env.OPENAI_API_KEY;
