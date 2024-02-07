@@ -7,7 +7,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(cors()); // Configurar el middleware de CORS para permitir solicitudes desde cualquier origen
+app.use(cors());
 app.use(express.json());
 
 // Almacena la clave de la API en una variable
@@ -15,6 +15,9 @@ const apiKey = process.env.OPENAI_API_KEY;
 
 // Proporciona la clave de la API al instanciar el cliente de OpenAI
 const openai = new OpenAI({ apiKey });
+
+// Manejador para las solicitudes OPTIONS
+app.options('/openai', cors());
 
 app.post('/openai', async (req, res) => {
   const { prompt } = req.body;
