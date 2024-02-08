@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://frontend-openai-six.vercel.app/'], // Permite solicitudes desde estos orígenes
+  origin: ['http://localhost:5173', 'https://frontend-openai-six.vercel.app'], // Permite solicitudes desde estos orígenes
   methods: 'GET,POST', // Permite solo los métodos GET y POST
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'], // Permitir solo estos encabezados en las solicitudes
   credentials: true // Habilitar el intercambio de cookies entre dominios
