@@ -1,26 +1,25 @@
 const { OpenAI } = require("openai");
 const express = require('express');
 const cors = require('cors');
+const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 
-const app = express();
-const port = process.env.PORT || 3001;
-
 app.use(cors({
-  methods: ['POST'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: ['http://localhost:5173', 'https://frontend-openai-six.vercel.app/'], // Permite solicitudes desde estos orígenes
+  methods: 'GET,POST', // Permite solo los métodos GET y POST
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'], // Permitir solo estos encabezados en las solicitudes
+  credentials: true // Habilitar el intercambio de cookies entre dominios
 }));
-app.use(express.json());
 
+app.use(express.json());
+// Puerto
+const port = process.env.PORT || 3001;
 // Almacena la clave de la API en una variable
 const apiKey = process.env.OPENAI_API_KEY;
 
 // Proporciona la clave de la API al instanciar el cliente de OpenAI
 const openai = new OpenAI({ apiKey });
-
-// Manejador para las solicitudes OPTIONS
-app.options('/openai', cors());
 
 app.post('/openai', async (req, res) => {
   const { prompt } = req.body;
