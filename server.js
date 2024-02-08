@@ -9,7 +9,7 @@ app.use(cors({
   origin: ['http://localhost:5173', 'https://frontend-openai-six.vercel.app'], // Permite solicitudes desde estos orígenes
   methods: 'GET,POST',
   // Permitir solo estos encabezados en las solicitudes
-  // allowedHeaders: ['Content-Type', 'Authorization', 'Accept'], 
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'], 
   credentials: true // Habilitar el intercambio de cookies entre dominios
 }));
 
